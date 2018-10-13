@@ -14,6 +14,7 @@ public class Produktkategori {
 
     public Produkt createProdukt(String navn, int lagerAntal, double stoerrelse) {
         Produkt produkt = new Produkt(navn,lagerAntal,stoerrelse);
+        produkt.setProduktkategori(this);
         this.addProdukt(produkt);
         return produkt;
     }

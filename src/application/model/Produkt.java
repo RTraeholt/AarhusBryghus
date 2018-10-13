@@ -4,11 +4,20 @@ public class Produkt {
     private String navn;
     private int lagerAntal;
     private double stoerrelse;
+    private Produktkategori produktkategori;
 
     public Produkt(String navn, int lagerAntal, double stoerrelse) {
         this.navn = navn;
         this.lagerAntal = lagerAntal;
         this.stoerrelse = stoerrelse;
+    }
+
+    public Produktkategori getProduktkategori() {
+        return produktkategori;
+    }
+
+    public void setProduktkategori(Produktkategori produktkategori) {
+        this.produktkategori = produktkategori;
     }
 
     public String getNavn() {

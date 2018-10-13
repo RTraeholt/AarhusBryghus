@@ -5,6 +5,7 @@ import storage.Storage;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Controller {
 
@@ -42,6 +43,16 @@ public class Controller {
         return p;
     }
 
+    public static void updateProdukt(Produkt produkt, Produktkategori pk, String navn, int antal, double stoerrelse) {
+        produkt.setNavn(navn);
+        produkt.setLagerAntal(antal);
+        produkt.setStoerrelse(stoerrelse);
+        produkt.getProduktkategori().getProdukter().remove(produkt);
+        produkt.setProduktkategori(pk);
+        pk.addProdukt(produkt);
+
+    }
+
     public static ArrayList<Produkt> getProdukter(Produktkategori pk) {
         return pk.getProdukter();
     }
@@ -52,12 +63,28 @@ public class Controller {
         return pl;
     }
 
+    public static ArrayList<Prisliste> getPrislister() {
+        return Storage.getPrislister();
+    }
+
+    public static void setProduktPriser(HashMap<Produkt,Double> produktPriser, Prisliste pl) {
+        pl.setProduktPriser(produktPriser);
+    }
+
+    public static void removeProduktPris(Prisliste pl, Produkt produkt) {
+        if (pl.getProduktPriser().containsKey(produkt)) {
+            pl.getProduktPriser().remove(produkt);
+            System.out.println(produkt + " Removed from " + pl);
+        }
+    }
+
     public static String addProduktPris(Prisliste pl, Produkt produkt, double pris){
         String msg = "Succes!";
 
         try {
             if (!pl.getProduktPriser().containsKey(produkt)) {
                 pl.addProduktPris(produkt,pris);
+                System.out.println(produkt + "added to: " + pl);
             } else {
                 throw new Exception("Dette produkt eksistere allerede på denne prisliste");
             }

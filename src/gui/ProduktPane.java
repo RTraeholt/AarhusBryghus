@@ -127,7 +127,23 @@ public class ProduktPane extends GridPane {
         }
     }
     private void createPAction() {}
-    private void updatePAction() {}
+    private void updatePAction() {
+        Produktkategori pk = lvwPk.getSelectionModel().getSelectedItem();
+        Produkt p = lvwP.getSelectionModel().getSelectedItem();
+
+        if(pk != null) {
+            if (p != null) {
+                OpretProduktWindow win = new OpretProduktWindow("Rediger produkt",pk, p);
+                win.showAndWait();
+
+                updateControlsFromSelected();
+            } else {
+                MainApp.createErrAlert("Ups! Der er ikke valgt et produkt",(Stage)this.getScene().getWindow());
+            }
+        } else {
+            MainApp.createErrAlert("Ups! Der er ikke valgt en produktkategori",(Stage)this.getScene().getWindow());
+        }
+    }
     private void deletePAction() {}
 
 }

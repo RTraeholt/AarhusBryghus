@@ -29,6 +29,11 @@ public class Prisliste {
     public void addProduktPris(Produkt produkt, double pris) {
         this.produktPriser.put(produkt,pris);
     }
+
+    @Override
+    public String toString() {
+        return navn;
+    }
 }
 
 
