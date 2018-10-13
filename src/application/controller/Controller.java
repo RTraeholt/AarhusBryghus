@@ -101,9 +101,6 @@ public class Controller {
         Ordre o1 = Controller.opretOrdre(false,LocalDate.now());
 
         Ordrelinje ol1 = Controller.opretOrdrelinje(p1,pl1.getProduktPriser().get(p1), 5, o1);
-
-        System.out.println(ol1.beregnSamletOrdrelinjePris());
-
     }
 }
 
